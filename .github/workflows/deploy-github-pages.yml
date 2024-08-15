@@ -20,6 +20,7 @@ jobs:
         runs-on: ubuntu-latest
         # Job steps
         steps:
+            working-directory: ./storybook
             # Manual Checkout
             - uses: actions/checkout@v4
 
@@ -30,7 +31,6 @@ jobs:
 
             #👇 Add Storybook build and deploy to GitHub Pages as a step in the workflow
             - uses: bitovi/github-actions-storybook-to-github-pages@v1.0.3
-              working-directory: ./storybook
               with:
                   install_command: npm ci # default: npm ci
                   build_command: npm run build-storybook # default: npm run build-storybook
