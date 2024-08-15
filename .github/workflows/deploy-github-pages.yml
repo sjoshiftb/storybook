@@ -8,13 +8,13 @@ permissions:
     contents: read
     pages: write
     id-token: write
-defaults:
-    run:
-        working-directory: ./storybook
 
 jobs:
     deploy:
         runs-on: ubuntu-latest
+        defaults:
+            run:
+                working-directory: ./storybook
         steps:
             - name: Change Directory
             - uses: actions/checkout@v4
