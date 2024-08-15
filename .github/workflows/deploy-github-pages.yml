@@ -24,6 +24,7 @@ jobs:
                   npm run build-storybook
 
             - name: Deploy Storybook to GitHub Pages
-              run: |
-                  npx bitovi/github-actions-storybook-to-github-pages@v1.0.3 --path storybook-static
-              working-directory: storybook
+              working-directory: ./storybook
+              uses: bitovi/github-actions-storybook-to-github-pages@v1.0.3
+              with:
+                  path: storybook-static
