@@ -27,3 +27,4 @@ jobs:
               with:
                   path: ./storybook/storybook-static
                   checkout: false
+              working-directory: ./storybook
