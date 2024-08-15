@@ -1,0 +1,13 @@
+services:
+  storybook:
+    build:
+      context: ./storybook
+      dockerfile: Dockerfile.dev
+    volumes:
+      - ./storybook:/usr/src/app
+      - /usr/src/app/node_modules
+    ports:
+     - 6006:6006
+    environment:
+      NODE_ENV: development
+    command: ["npm", "run", "storybook"]

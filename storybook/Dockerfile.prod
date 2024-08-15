@@ -1,0 +1,33 @@
+# Production Dockerfile
+# Stage 1: Build the application
+FROM node:20 as builder
+
+WORKDIR /usr/src/app
+
+# Copy package.json and package-lock.json
+COPY package*.json ./
+COPY package-lock.json ./
+
+# Copy the rest of the application code
+COPY . /usr/src/app/
+
+# Install production dependencies
+RUN npm ci
+
+# Build your application
+RUN npm run build-storybook
+
+# Stage 2: Serve the application with Nginx
+FROM nginx:alpine
+
+# Copy the built app from the builder stage
+COPY --from=builder /usr/src/app/storybook-static /usr/share/nginx/html
+
+# Copy nginx configuration file
+COPY nginx/nginx.conf /etc/nginx/nginx.conf
+
+# Expose port 80
+EXPOSE 80
+
+# Start Nginx
+CMD ["nginx", "-g", "daemon off;"]
