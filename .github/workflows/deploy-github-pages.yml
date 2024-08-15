@@ -18,6 +18,9 @@ permissions:
 jobs:
     deploy:
         runs-on: ubuntu-latest
+        defaults:
+            run:
+                working-directory: shared-models
         # Job steps
         steps:
             # Manual Checkout
@@ -31,7 +34,7 @@ jobs:
             #👇 Add Storybook build and deploy to GitHub Pages as a step in the workflow
             - uses: bitovi/github-actions-storybook-to-github-pages@v1.0.3
               with:
-                  install_command: cd ./storybook && npm ci # default: npm ci
-                  build_command: cd ./storybook && npm run build-storybook # default: npm run build-storybook
-                  path: ./storybook/storybook-static # default: dist/storybook
+                  install_command: npm ci # default: npm ci
+                  build_command: npm run build-storybook # default: npm run build-storybook
+                  path: storybook-static # default: dist/storybook
                   checkout: false
