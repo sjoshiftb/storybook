@@ -13,7 +13,6 @@ jobs:
     deploy:
         runs-on: ubuntu-latest
         steps:
-            - name: Change Directory
             - uses: actions/checkout@v4
             - uses: actions/setup-node@v4
               with:
