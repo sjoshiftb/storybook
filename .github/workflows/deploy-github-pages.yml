@@ -12,15 +12,16 @@ permissions:
 jobs:
     deploy:
         runs-on: ubuntu-latest
-        defaults:
-            run:
-                working-directory: ./storybook
         steps:
             - name: Change Directory
             - uses: actions/checkout@v4
             - uses: actions/setup-node@v4
               with:
                   node-version: 20.x
+            - name: Install Dependencies and Build Storybook
+              run: |
+                  cd storybook
+
             - uses: bitovi/github-actions-storybook-to-github-pages@v1.0.3
               with:
                   install_command: npm ci
